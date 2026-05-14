@@ -1,9 +1,8 @@
-python-bidi
-pypiwin32
-PyWin32
-PyMuPDF
-tensorflow
-torch
+Flask
+flask-cors
+gunicorn
+numpy
+scikit-learn
+joblib
+scipy
 pandas
-matplotlib
-opencv-python
