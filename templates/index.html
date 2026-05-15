@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HeartAI — Cardiac Intelligence Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+  </head>
+  <body>
+    <!-- ── PARTICLE CANVAS ──────────────────────────────────────────────── -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- ── SIDEBAR OVERLAY (mobile) ─────────────────────────────────────── -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ── SIDEBAR NAV ──────────────────────────────────────────────────── -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-logo">
+          <div class="logo-icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path
+                d="M14 4C14 4 6 8.5 6 15C6 19.4 9.6 23 14 23C18.4 23 22 19.4 22 15C22 8.5 14 4 14 4Z"
+                stroke="url(#lg1)"
+                stroke-width="1.5"
+              />
+              <path
+                d="M2 15h4l2.5-5L11 19l2.5-9L16 15h4l2.5-3L25 15h1"
+                stroke="url(#lg2)"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <defs>
+                <linearGradient
+                  id="lg1"
+                  x1="6"
+                  y1="4"
+                  x2="22"
+                  y2="23"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#00D4FF" />
+                  <stop offset="1" stop-color="#7B5FFF" />
+                </linearGradient>
+                <linearGradient
+                  id="lg2"
+                  x1="2"
+                  y1="15"
+                  x2="26"
+                  y2="15"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#00D4FF" />
+                  <stop offset="1" stop-color="#00FF9D" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="logo-text">Heart<span class="accent">AI</span></div>
+        </div>
+
+        <div class="api-status">
+          <div class="status-ring">
+            <div class="status-dot"></div>
+          </div>
+          <div class="status-info">
+            <div class="status-label">System Online</div>
+            <div class="status-sub">ML Pipeline Ready</div>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li>
+            <a href="#hero" class="nav-link active" data-section="hero">
+              <span class="nav-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+              </span>
+              <span>Overview</span>
+              <span class="nav-indicator"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#predict" class="nav-link" data-section="predict">
+              <span class="nav-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </span>
+              <span>Analysis</span>
+              <span class="nav-indicator"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#history" class="nav-link" data-section="history">
+              <span class="nav-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 8v4l3 3" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </span>
+              <span>History</span>
+              <span class="nav-indicator"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link" data-section="about">
+              <span class="nav-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12.01" y2="8" />
+                </svg>
+              </span>
+              <span>About</span>
+              <span class="nav-indicator"></span>
+            </a>
+          </li>
+          <li>
+            <a href="/developer" class="nav-link">
+              <span class="nav-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+              </span>
+
+              <span>Developers</span>
+
+              <span class="nav-indicator"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="model-badge">
+          <div class="mb-row">
+            <span class="mb-label">Model</span>
+            <span class="mb-value">Logistic Reg.</span>
+          </div>
+          <div class="mb-row">
+            <span class="mb-label">Accuracy</span>
+            <span class="mb-value accent">83%</span>
+          </div>
+          <div class="mb-row">
+            <span class="mb-label">ROC-AUC</span>
+            <span class="mb-value accent">91%</span>
+          </div>
+        </div>
+        <div class="sidebar-ver">v1.0 · Scikit-learn · Flask</div>
+      </div>
+    </nav>
+
+    <!-- ── MOBILE TOPBAR ─────────────────────────────────────────────────── -->
+    <header class="topbar" id="topbar">
+      <div class="topbar-logo">Heart<span class="accent">AI</span></div>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+    </header>
+
+    <!-- ── MAIN CONTENT ──────────────────────────────────────────────────── -->
+    <main class="main" id="main">
+      <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+      <section id="hero" class="section hero-section">
+        <div class="hero-glow glow-1"></div>
+        <div class="hero-glow glow-2"></div>
+        <div class="hero-glow glow-3"></div>
+
+        <!-- ECG line -->
+        <div class="ecg-wrap">
+          <svg class="ecg-svg" viewBox="0 0 1400 70" preserveAspectRatio="none">
+            <path
+              class="ecg-path"
+              d="M0,35 L120,35 L135,35 L143,8 L155,62 L162,2 L172,68 L180,35 L310,35 L325,35 L333,8 L345,62 L352,2 L362,68 L370,35 L500,35 L515,35 L523,8 L535,62 L542,2 L552,68 L560,35 L690,35 L705,35 L713,8 L725,62 L732,2 L742,68 L750,35 L880,35 L895,35 L903,8 L915,62 L922,2 L932,68 L940,35 L1400,35"
+            />
+          </svg>
+        </div>
+
+        <div class="hero-body">
+          <div class="hero-eyebrow">
+            <div class="eyebrow-pulse"></div>
+            <span>Cardiac Intelligence Platform · AI-Powered</span>
+          </div>
+
+          <h1 class="hero-h1">
+            Predict Heart Risk<br />
+            <span class="hero-grad">With Clinical Precision</span>
+          </h1>
+
+          <p class="hero-p">
+            Advanced ML pipeline: Logistic Regression + PCA dimensionality
+            reduction + SMOTE balancing — trained on real-world cardiac
+            biomarkers for clinical-grade predictions.
+          </p>
+
+          <div class="hero-kpis">
+            <div class="kpi">
+              <div class="kpi-val">83<span class="kpi-unit">%</span></div>
+              <div class="kpi-label">Accuracy</div>
+            </div>
+            <div class="kpi-div"></div>
+            <div class="kpi">
+              <div class="kpi-val">91<span class="kpi-unit">%</span></div>
+              <div class="kpi-label">ROC-AUC</div>
+            </div>
+            <div class="kpi-div"></div>
+            <div class="kpi">
+              <div class="kpi-val">20</div>
+              <div class="kpi-label">PCA Dims</div>
+            </div>
+            <div class="kpi-div"></div>
+            <div class="kpi">
+              <div class="kpi-val">10</div>
+              <div class="kpi-label">Biomarkers</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="scrollToSection('predict')">
+              <span>Run Analysis</span>
+
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12,5 19,12 12,19" />
+              </svg>
+            </button>
+
+            <button class="btn-outline" onclick="scrollToSection('about')">
+              Learn More
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating tech cards -->
+        <div class="tech-cards">
+          <div class="tech-card tc-1">
+            <div class="tc-badge">ML</div>
+            <div class="tc-name">Logistic Regression</div>
+            <div class="tc-sub">Binary Classifier</div>
+            <div class="tc-bar">
+              <div class="tc-fill" style="width: 83%"></div>
+            </div>
+          </div>
+          <div class="tech-card tc-2">
+            <div class="tc-badge">PCA</div>
+            <div class="tc-name">Dimensionality Reduction</div>
+            <div class="tc-sub">20 Components</div>
+            <div class="tc-bar">
+              <div class="tc-fill" style="width: 91%"></div>
+            </div>
+          </div>
+          <div class="tech-card tc-3">
+            <div class="tc-badge">⚖</div>
+            <div class="tc-name">SMOTE Balanced</div>
+            <div class="tc-sub">Class Oversampling</div>
+            <div class="tc-bar">
+              <div class="tc-fill" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PREDICTION FORM ════════════════════════════════════════════════ -->
+      <section id="predict" class="section predict-section">
+        <div class="sec-header">
+          <div class="sec-tag">Biomarker Input</div>
+          <h2 class="sec-title">Patient Analysis</h2>
+          <p class="sec-sub">
+            Enter all 10 cardiac biomarkers. Values are z-score standardized —
+            typical range is −3.0 to +3.0.
+          </p>
+        </div>
+
+        <div class="predict-layout">
+          <!-- FORM PANEL -->
+          <div class="form-card glass-card">
+            <form id="predForm" novalidate autocomplete="off">
+              <!-- Group: Heart Rate -->
+              <div class="fg-label">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+                </svg>
+                Heart Rate Metrics
+              </div>
+              <div class="form-row">
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="BeatStat_HR_N"
+                      name="BeatStat_HR_N"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="BeatStat_HR_N"
+                      >HR Normalized <span class="f-tag">PC1</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required · range −5 to 5</span>
+                </div>
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="BeatStat_HR_mean"
+                      name="BeatStat_HR_mean"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="BeatStat_HR_mean"
+                      >HR Mean <span class="f-tag">PC10</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required · range −5 to 5</span>
+                </div>
+              </div>
+
+              <!-- Group: Cardiac Index -->
+              <div class="fg-label">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 8v4l3 3" />
+                </svg>
+                Cardiac Index
+              </div>
+              <div class="form-row">
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="BeatStat_CI_vc"
+                      name="BeatStat_CI_vc"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="BeatStat_CI_vc"
+                      >CI Variation Coeff <span class="f-tag">PC2</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="BeatStat_CI_mean"
+                      name="BeatStat_CI_mean"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="BeatStat_CI_mean"
+                      >CI Mean <span class="f-tag">PC3</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+              </div>
+
+              <!-- Group: Blood Pressure -->
+              <div class="fg-label">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+                Blood Pressure Metrics
+              </div>
+              <div class="form-row">
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="BeatStat_mBP_var"
+                      name="BeatStat_mBP_var"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="BeatStat_mBP_var"
+                      >mBP Variance <span class="f-tag">PC4</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="BeatStat_mBP_mean"
+                      name="BeatStat_mBP_mean"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="BeatStat_mBP_mean"
+                      >mBP Mean <span class="f-tag">PC8</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+              </div>
+
+              <!-- Group: HRV & Spectral -->
+              <div class="fg-label">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M2 2l20 20M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85"
+                  />
+                </svg>
+                HRV & Spectral Features
+              </div>
+              <div class="form-row">
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="HRS_RRI_LF_min"
+                      name="HRS_RRI_LF_min"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="HRS_RRI_LF_min"
+                      >RRI LF Min <span class="f-tag">PC6</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="HRS_RRI_HFnu_max"
+                      name="HRS_RRI_HFnu_max"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="HRS_RRI_HFnu_max"
+                      >RRI HFnu Max <span class="f-tag">PC9</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="dBPS_LF_HF_dBP_min"
+                      name="dBPS_LF_HF_dBP_min"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="dBPS_LF_HF_dBP_min"
+                      >LF/HF dBP Min <span class="f-tag">PC5</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+                <div class="field-wrap">
+                  <div class="field">
+                    <input
+                      type="number"
+                      id="HRS_RRI_LF_HF_max"
+                      name="HRS_RRI_LF_HF_max"
+                      class="f-input"
+                      placeholder=" "
+                      step="0.01"
+                      required
+                    />
+                    <label class="f-label" for="HRS_RRI_LF_HF_max"
+                      >RRI LF/HF Max <span class="f-tag">PC13</span></label
+                    >
+                    <span class="f-unit">z</span>
+                  </div>
+                  <span class="f-err">Required</span>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn-sample" id="sampleBtn">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                  </svg>
+                  Fill Sample
+                </button>
+                <button type="submit" class="btn-run" id="runBtn">
+                  <span class="btn-run-text">Run Prediction</span>
+                  <div class="btn-run-spinner"></div>
+                  <svg
+                    class="btn-run-arrow"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12,5 19,12 12,19" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- PIPELINE INFO PANEL -->
+          <div class="pipeline-panel">
+            <div class="glass-card pipe-card">
+              <div class="pipe-header">Pipeline Architecture</div>
+              <div class="pipe-steps">
+                <div class="pipe-step">
+                  <div class="ps-num">01</div>
+                  <div class="ps-body">
+                    <div class="ps-name">Input Features</div>
+                    <div class="ps-sub">10 cardiac biomarkers</div>
+                  </div>
+                </div>
+                <div class="ps-connector"><div class="ps-line"></div></div>
+                <div class="pipe-step">
+                  <div class="ps-num">02</div>
+                  <div class="ps-body">
+                    <div class="ps-name">Median Imputation</div>
+                    <div class="ps-sub">Missing value handling</div>
+                  </div>
+                </div>
+                <div class="ps-connector"><div class="ps-line"></div></div>
+                <div class="pipe-step">
+                  <div class="ps-num">03</div>
+                  <div class="ps-body">
+                    <div class="ps-name">StandardScaler</div>
+                    <div class="ps-sub">Z-score normalization</div>
+                  </div>
+                </div>
+                <div class="ps-connector"><div class="ps-line"></div></div>
+                <div class="pipe-step">
+                  <div class="ps-num">04</div>
+                  <div class="ps-body">
+                    <div class="ps-name">PCA Reduction</div>
+                    <div class="ps-sub">20 principal components</div>
+                  </div>
+                </div>
+                <div class="ps-connector"><div class="ps-line"></div></div>
+                <div class="pipe-step ps-active">
+                  <div class="ps-num">05</div>
+                  <div class="ps-body">
+                    <div class="ps-name">Logistic Regression</div>
+                    <div class="ps-sub">Binary classification</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card guide-card">
+              <div class="guide-title">Input Guide</div>
+              <div class="guide-item">
+                <span class="guide-dot"></span>
+                All values are <strong>z-score standardized</strong>
+              </div>
+              <div class="guide-item">
+                <span class="guide-dot"></span>
+                Typical range: <code>−3.0</code> to <code>+3.0</code>
+              </div>
+              <div class="guide-item">
+                <span class="guide-dot"></span>
+                Values near <code>0</code> = population average
+              </div>
+              <div class="guide-item">
+                <span class="guide-dot"></span>
+                Use <strong>Fill Sample</strong> for demo values
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ HISTORY ════════════════════════════════════════════════════════ -->
+      <section id="history" class="section history-section">
+        <div class="sec-header">
+          <div class="sec-tag">Audit Log</div>
+          <h2 class="sec-title">Prediction History</h2>
+        </div>
+        <div class="history-controls">
+          <div class="history-count" id="histCount">0 predictions</div>
+          <button class="btn-clear" id="clearBtn">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14H6L5 6" />
+              <path d="M10 11v6M14 11v6" />
+            </svg>
+            Clear All
+          </button>
+        </div>
+        <div class="glass-card history-card">
+          <div class="htable-wrap">
+            <table class="htable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Result</th>
+                  <th>Risk Level</th>
+                  <th>Probability</th>
+                  <th>Confidence</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="histBody">
+                <tr class="hist-empty">
+                  <td colspan="6">
+                    <div class="empty-state">
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                      >
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                      </svg>
+                      <p>No predictions yet — run your first analysis above</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ ABOUT ══════════════════════════════════════════════════════════ -->
+      <section id="about" class="section about-section">
+        <div class="sec-header">
+          <div class="sec-tag">Technical Details</div>
+          <h2 class="sec-title">About HeartAI</h2>
+        </div>
+        <div class="about-grid">
+          <div class="glass-card about-card">
+            <div class="about-icon-wrap ic-blue">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"
+                />
+              </svg>
+            </div>
+            <h3>Data Science Pipeline</h3>
+            <p>
+              Production-grade scikit-learn pipeline featuring median
+              imputation, StandardScaler normalization, SMOTE oversampling for
+              class imbalance, and PCA reduction to 20 components.
+            </p>
+          </div>
+          <div class="glass-card about-card">
+            <div class="about-icon-wrap ic-green">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <h3>Model Performance</h3>
+            <p>
+              Logistic Regression achieves 83% test accuracy and 91% ROC-AUC.
+              SMOTE rebalancing ensures equal sensitivity across disease states
+              in the training set.
+            </p>
+          </div>
+          <div class="glass-card about-card">
+            <div class="about-icon-wrap ic-purple">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M4.5 9.5V5a2 2 0 012-2h11a2 2 0 012 2v4.5M4.5 9.5h15M4.5 9.5v9.5a2 2 0 002 2h11a2 2 0 002-2V9.5"
+                />
+              </svg>
+            </div>
+            <h3>Clinical Biomarkers</h3>
+            <p>
+              10 mandatory inputs derived from hemodynamic monitoring: heart
+              rate statistics, cardiac index, mean arterial pressure, and HRV
+              spectral analysis (LF, HF, LF/HF).
+            </p>
+          </div>
+          <div class="glass-card about-card">
+            <div class="about-icon-wrap ic-cyan">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+            </div>
+            <h3>Tech Stack</h3>
+            <p>
+              Backend: Python + Flask REST API. ML: Scikit-learn +
+              imbalanced-learn. Frontend: Pure HTML/CSS/JS. Fully responsive,
+              glassmorphism dark-themed architecture.
+            </p>
+          </div>
+        </div>
+
+        <div class="disclaimer-box">
+          <div class="disc-icon">⚠</div>
+          <div class="disc-text">
+            <strong>Research & Educational Use Only</strong> — This tool is not
+            a substitute for professional medical diagnosis. Always consult a
+            qualified healthcare provider for clinical decisions.
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-logo">Heart<span class="accent">AI</span></div>
+        <div class="footer-meta">
+          Built with Scikit-learn · Flask · Vanilla JS · ❤
+        </div>
+        <div class="footer-copy">
+          © 2025 HeartAI Cardiac Intelligence Platform
+        </div>
+      </footer>
+    </main>
+    <!-- /main -->
+
+    <!-- ══ RESULT MODAL ══════════════════════════════════════════════════════ -->
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div
+        class="modal-wrap"
+        id="modalWrap"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Prediction Result"
+      >
+        <div class="modal-glow"></div>
+
+        <!-- Modal header -->
+        <div class="modal-header">
+          <div class="modal-logo">HeartAI · Result</div>
+          <button class="modal-close" id="modalClose" aria-label="Close">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- ECG mini -->
+        <div class="modal-ecg">
+          <svg viewBox="0 0 500 50" preserveAspectRatio="none">
+            <path
+              class="modal-ecg-path"
+              d="M0,25 L80,25 L95,25 L103,5 L115,45 L122,2 L132,48 L140,25 L250,25 L265,25 L273,5 L285,45 L292,2 L302,48 L310,25 L420,25 L435,25 L443,5 L455,45 L462,2 L472,48 L480,25 L500,25"
+            />
+          </svg>
+        </div>
+
+        <!-- Verdict -->
+        <div class="modal-verdict" id="modalVerdict">
+          <div class="mv-icon" id="mvIcon">🫀</div>
+          <div class="mv-status" id="mvStatus">—</div>
+          <div class="mv-desc" id="mvDesc">Analyzing…</div>
+        </div>
+
+        <!-- Risk badge -->
+        <div class="modal-badge-row">
+          <div class="modal-risk-badge" id="modalRiskBadge">—</div>
+          <div class="modal-ts" id="modalTs"></div>
+        </div>
+
+        <!-- Metrics grid -->
+        <div class="modal-metrics">
+          <div class="mm-card">
+            <div class="mm-label">Risk Probability</div>
+            <div class="mm-donut">
+              <svg viewBox="0 0 80 80">
+                <circle
+                  class="mm-track"
+                  cx="40"
+                  cy="40"
+                  r="30"
+                  fill="none"
+                  stroke-width="7"
+                />
+                <circle
+                  class="mm-fill"
+                  id="mmFill"
+                  cx="40"
+                  cy="40"
+                  r="30"
+                  fill="none"
+                  stroke-width="7"
+                  stroke-dasharray="188.5"
+                  stroke-dashoffset="188.5"
+                  transform="rotate(-90 40 40)"
+                />
+                <text
+                  class="mm-text"
+                  x="40"
+                  y="45"
+                  text-anchor="middle"
+                  id="mmPct"
+                >
+                  0%
+                </text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="mm-card">
+            <div class="mm-label">Confidence</div>
+            <div class="mm-bars">
+              <div class="mmb-row">
+                <span class="mmb-name">At Risk</span>
+                <div class="mmb-track">
+                  <div
+                    class="mmb-fill mmb-risk"
+                    id="mmRiskBar"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <span class="mmb-val" id="mmRiskVal">—</span>
+              </div>
+              <div class="mmb-row">
+                <span class="mmb-name">Healthy</span>
+                <div class="mmb-track">
+                  <div
+                    class="mmb-fill mmb-ok"
+                    id="mmOkBar"
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <span class="mmb-val" id="mmOkVal">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mm-card">
+            <div class="mm-label">Risk Gauge</div>
+            <div class="mm-gauge">
+              <svg viewBox="0 0 160 90">
+                <path
+                  d="M15,80 A65,65 0 0,1 145,80"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.08)"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M15,80 A65,65 0 0,1 62,22"
+                  fill="none"
+                  stroke="#00FF9D"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M62,22 A65,65 0 0,1 100,19"
+                  fill="none"
+                  stroke="#FFB800"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M100,19 A65,65 0 0,1 145,80"
+                  fill="none"
+                  stroke="#FF4D6D"
+                  stroke-width="10"
+                  stroke-linecap="round"
+                />
+                <line
+                  class="gauge-needle"
+                  id="gaugeNeedle"
+                  x1="80"
+                  y1="80"
+                  x2="80"
+                  y2="22"
+                  stroke="white"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  transform="rotate(0,80,80)"
+                />
+                <circle cx="80" cy="80" r="5" fill="var(--cyan)" />
+              </svg>
+              <div class="gauge-labels">
+                <span>Low</span><span>Mid</span><span>High</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Summary -->
+        <div class="modal-summary">
+          <div class="ms-header">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"
+              />
+            </svg>
+            AI Clinical Summary
+          </div>
+          <div class="ms-text" id="aiSummary">—</div>
+        </div>
+
+        <!-- Modal footer buttons -->
+        <div class="modal-footer">
+          <button class="btn-again" id="analyzeAgainBtn">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M23 4v6h-6" />
+              <path d="M1 20v-6h6" />
+              <path
+                d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"
+              />
+            </svg>
+            Analyze Again
+          </button>
+          <button class="btn-primary-sm" id="modalCloseBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ LOADING OVERLAY ════════════════════════════════════════════════════ -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="ls-inner">
+        <div class="ls-ecg">
+          <svg viewBox="0 0 300 60" preserveAspectRatio="none">
+            <path
+              class="ls-ecg-path"
+              d="M0,30 L60,30 L75,30 L82,8 L92,52 L98,3 L106,57 L113,30 L200,30 L215,30 L222,8 L232,52 L238,3 L246,57 L253,30 L300,30"
+            />
+          </svg>
+        </div>
+        <div class="ls-title">Analyzing Biomarkers</div>
+        <div class="ls-sub" id="lsSub">Running ML pipeline…</div>
+        <div class="ls-dots">
+          <div class="ls-dot"></div>
+          <div class="ls-dot"></div>
+          <div class="ls-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

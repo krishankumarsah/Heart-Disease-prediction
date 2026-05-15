@@ -1,0 +1,187 @@
+<!-- developer.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer Team | HeartAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/developer.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- BACKGROUND GLOW -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <!-- HEADER -->
+    <header class="dev-header">
+      <div class="logo">Heart<span>AI</span></div>
+
+      <a href="{{ url_for('home') }}" class="back-btn"> ← Back to Home </a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-tag">HeartAI Core Team</div>
+
+      <h1>
+        Meet The Team <br />
+        Behind <span>HeartAI</span>
+      </h1>
+
+      <p>
+        HeartAI is an AI-powered Heart Disease Prediction System developed using
+        Machine Learning, Flask, and modern frontend technologies. Our team
+        collaborated on website development, ML model training, documentation,
+        and project presentation to build a complete intelligent healthcare
+        solution.
+      </p>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="team-section">
+      <div class="team-grid">
+        <!-- MEMBER 1 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+
+          <div class="profile-img">
+            <img
+              src="{{ url_for('static', filename='src/krishan.jpeg') }}"
+              alt="Krishan Kumar"
+            />
+          </div>
+
+          <h2>Krishan Kumar</h2>
+
+          <h4>Full Stack Developer</h4>
+
+          <p>
+            Designed and developed the complete HeartAI website including both
+            frontend and backend. Worked on UI/UX design, Flask integration,
+            APIs, responsive layouts, animations, and ML model connectivity.
+          </p>
+
+          <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- MEMBER 2 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+
+          <div class="profile-img">
+            <img src="{{ url_for('static', filename='src/nirjala.jpeg') }}" alt="Nirjala Kumari" />
+          </div>
+
+          <h2>Nirjala Kumari</h2>
+
+          <h4>Machine Learning Engineer</h4>
+
+          <p>
+            Worked on training the Heart Disease Prediction ML model using data
+            preprocessing, feature scaling, PCA, and classification techniques
+            to improve prediction accuracy.
+          </p>
+
+          <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- MEMBER 3 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+
+          <div class="profile-img">
+            <img src="{{ url_for('static', filename='src/pooja.jpeg') }}" alt="Pooja Kumari" />
+          </div>
+
+          <h2>Pooja Kumari</h2>
+
+          <h4>AI Model Training Specialist</h4>
+
+          <p>
+            Assisted in machine learning model training, testing, dataset
+            preprocessing, feature analysis, and model evaluation for HeartAI
+            prediction workflow.
+          </p>
+
+          <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- MEMBER 4 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+
+          <div class="profile-img">
+            <img src="{{ url_for('static', filename='src/anjali.jpeg') }}" alt="Anjali Kumari" />
+          </div>
+
+          <h2>Anjali Kumari</h2>
+
+          <h4>Report & Documentation Manager</h4>
+
+          <p>
+            Prepared the complete project report and documentation including
+            system modules, workflow, diagrams, implementation details, and
+            project research content.
+          </p>
+
+          <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- MEMBER 5 -->
+        <div class="team-card">
+          <div class="card-glow"></div>
+
+          <div class="profile-img">
+            <img src="{{ url_for('static', filename='src/mithilesh.jpeg') }}" alt="Mithilesh Kr. Mandal" />
+          </div>
+
+          <h2>Mithilesh Kr. Mandal</h2>
+
+          <h4>Presentation Designer</h4>
+
+          <p>
+            Designed the complete project PPT presentation including system
+            overview, ML workflow, architecture diagrams, implementation flow,
+            and project showcase slides.
+          </p>
+
+          <div class="socials">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>HeartAI Development Team</div>
+
+      <p>© 2026 HeartAI — Intelligent Heart Disease Prediction System</p>
+    </footer>
+  </body>
+</html>
