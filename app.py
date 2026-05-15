@@ -6,23 +6,14 @@ import os
 import logging
 from datetime import datetime
 
-# =========================================================
-# LOGGING
-# =========================================================
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# =========================================================
-# PATH SETUP
-# =========================================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
-# =========================================================
-# FLASK APP
-# =========================================================
 app = Flask(
     __name__,
     template_folder=TEMPLATE_DIR,
@@ -31,9 +22,6 @@ app = Flask(
 
 CORS(app)
 
-# =========================================================
-# LOAD MODEL FILES
-# =========================================================
 MODEL_LOADED = False
 
 try:
@@ -65,14 +53,8 @@ except Exception as e:
 
     logger.exception("❌ Failed to load model")
 
-# =========================================================
-# HISTORY
-# =========================================================
 prediction_history = []
 
-# =========================================================
-# USER FEATURES
-# =========================================================
 USER_FEATURES = [
     "BeatStat_HR_N",
     "BeatStat_CI_vc",
@@ -86,9 +68,6 @@ USER_FEATURES = [
     "HRS_RRI_LF_HF_max",
 ]
 
-# =========================================================
-# ROUTES
-# =========================================================
 
 # HOME PAGE
 @app.route("/")
@@ -116,9 +95,7 @@ def features():
         "features": USER_FEATURES
     })
 
-# =========================================================
-# PREDICTION API
-# =========================================================
+
 @app.route("/api/predict", methods=["POST"])
 def predict():
 
@@ -205,27 +182,18 @@ def predict():
             "error": str(e)
         }), 500
 
-# =========================================================
-# HISTORY API
-# =========================================================
+
 @app.route("/api/history")
 def history():
     return jsonify(prediction_history)
 
-# =========================================================
-<<<<<<< HEAD
-# IGNORE SKLEARN VERSION WARNINGS
-# =========================================================
+
 import warnings
 from sklearn.exceptions import InconsistentVersionWarning
 
 warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
 
-# =========================================================
-=======
->>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
-# RUN SERVER
-# =========================================================
+
 if __name__ == "__main__":
 
     print("\n==============================")
