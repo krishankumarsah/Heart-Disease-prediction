@@ -1,7 +1,5 @@
-/* ============================================================
-   HEARTAI — app.js
-   Premium medical AI dashboard interactions
-============================================================ */
+//  HEARTAI — app.js
+//  Premium medical AI dashboard interactions
 
 "use strict";
 
