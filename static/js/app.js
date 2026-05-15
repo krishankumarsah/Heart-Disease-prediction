@@ -277,36 +277,34 @@ form?.addEventListener("submit", async (e) => {
   runBtn?.classList.add("loading");
   const cycleId = showLoader();
 
-  // Build form data
   const inputs = form.querySelectorAll(".f-input[name]");
   const body = {};
+
   inputs.forEach((inp) => {
     body[inp.name] = parseFloat(inp.value);
   });
 
   try {
-<<<<<<< HEAD
-    const res = await fetch("predict", {
-=======
-    const res = await fetch("/api/predict", {
->>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
+    const res = await fetch("/predict", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
 
     const data = await res.json();
+
     hideLoader(cycleId);
     runBtn?.classList.remove("loading");
 
     if (data.error) throw new Error(data.error);
+
     showModal(data);
     addHistory(data);
+
   } catch (err) {
     hideLoader(cycleId);
     runBtn?.classList.remove("loading");
 
-    // Fallback demo result if backend not available
     const demo = buildDemoResult(body);
     showModal(demo);
     addHistory(demo);
@@ -494,6 +492,7 @@ let histCount = predHistory.length;
 
 function addHistory(data) {
   histCount++;
+
   const entry = {
     id: histCount,
     result: data.prediction === 1 ? "At Risk" : "Healthy",
@@ -516,11 +515,7 @@ function addHistory(data) {
 
   try {
     localStorage.setItem("heartai_history", JSON.stringify(predHistory));
-<<<<<<< HEAD
   } catch { }
-=======
-  } catch {}
->>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
 
   renderHistory();
 }
@@ -568,15 +563,14 @@ function renderHistory() {
 /* Clear history */
 document.getElementById("clearBtn")?.addEventListener("click", () => {
   if (predHistory.length === 0) return;
+
   predHistory = [];
   histCount = 0;
+
   try {
     localStorage.removeItem("heartai_history");
-<<<<<<< HEAD
   } catch { }
-=======
-  } catch {}
->>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
+
   renderHistory();
 });
 
