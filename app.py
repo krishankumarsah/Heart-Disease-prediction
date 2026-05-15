@@ -213,6 +213,7 @@ def history():
     return jsonify(prediction_history)
 
 # =========================================================
+<<<<<<< HEAD
 # IGNORE SKLEARN VERSION WARNINGS
 # =========================================================
 import warnings
@@ -221,6 +222,8 @@ from sklearn.exceptions import InconsistentVersionWarning
 warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
 
 # =========================================================
+=======
+>>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
 # RUN SERVER
 # =========================================================
 if __name__ == "__main__":

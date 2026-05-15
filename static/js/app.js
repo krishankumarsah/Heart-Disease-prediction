@@ -285,7 +285,11 @@ form?.addEventListener("submit", async (e) => {
   });
 
   try {
+<<<<<<< HEAD
     const res = await fetch("predict", {
+=======
+    const res = await fetch("/api/predict", {
+>>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -512,7 +516,11 @@ function addHistory(data) {
 
   try {
     localStorage.setItem("heartai_history", JSON.stringify(predHistory));
+<<<<<<< HEAD
   } catch { }
+=======
+  } catch {}
+>>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
 
   renderHistory();
 }
@@ -564,7 +572,11 @@ document.getElementById("clearBtn")?.addEventListener("click", () => {
   histCount = 0;
   try {
     localStorage.removeItem("heartai_history");
+<<<<<<< HEAD
   } catch { }
+=======
+  } catch {}
+>>>>>>> cf243f9b884612467b62ca130dd681e0122171e1
   renderHistory();
 });
 
